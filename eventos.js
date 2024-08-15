@@ -2,8 +2,14 @@ function saludar() {
     alert('Hola!');
 }
 
-document.addEventListener('DOMContentLoaded', (event)=>{
- document.querySelector('button').addEventListener('click', function() {
-    alert('Hola! Soy el div');
- });
+document.addEventListener('DOMContentLoaded', () => {
+    const button = document.querySelector('button');
+    button.addEventListener('click', (event) => { // Manejador para el botón
+        event.stopPropagation(); // Evita que el evento se propague al div
+        saludar();// Llama a la función saludar
+    });
+
+    document.querySelector('div').addEventListener('click', () => {
+        alert('Hola! Soy el div');
+    });
 });
